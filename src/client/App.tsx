@@ -174,7 +174,7 @@ export const App: React.FC = () => {
 
           <div className="flex items-center space-x-3 text-xs">
             <span className="rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-[11px] font-bold text-emerald-400 border border-emerald-500/30">
-              ● Engine Active ({analysisData?.providerUsed || "Insight Analysis Engine"})
+              ● Engine Active ({analysisData?.providerUsed || "Nexiora Analysis Engine"})
             </span>
             <span className="hidden sm:inline text-slate-500">|</span>
             <span className="hidden sm:inline text-slate-400 text-[11px]">

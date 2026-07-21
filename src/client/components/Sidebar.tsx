@@ -200,7 +200,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           <div className="rounded-xl bg-slate-900/80 p-3 border border-slate-800 text-[11px] text-slate-400 space-y-1">
             <div className="flex items-center space-x-1 font-bold text-cyan-400">
               <Sparkles className="h-3.5 w-3.5" />
-              <span>Insight Engine v1.2</span>
+              <span>Nexiora Engine v1.2</span>
             </div>
             <p className="text-[10px] text-slate-500">Zero-Hallucination Evidence Audit Trail</p>
           </div>

@@ -25,7 +25,7 @@ app.get("/api/health", (_req, res) => {
   res.json({
     status: "healthy",
     service: "Nexiora AI Backend",
-    engine: "Insight Analysis Engine",
+    engine: "Nexiora Analysis Engine",
     timestamp: new Date().toISOString(),
   });
 });

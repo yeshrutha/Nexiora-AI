@@ -104,7 +104,7 @@ export const UploadForm: React.FC<UploadFormProps> = ({
       <div className="text-center mb-8">
         <div className="inline-flex items-center space-x-2 rounded-full bg-cyan-500/10 px-4 py-1.5 text-xs font-semibold text-cyan-400 border border-cyan-500/20 mb-4 shadow-sm">
           <Sparkles className="h-3.5 w-3.5" />
-          <span>Insight Analysis Engine v1.2</span>
+          <span>Nexiora Analysis Engine v1.2</span>
         </div>
         <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
           Client Conversation Intelligence
@@ -166,7 +166,7 @@ export const UploadForm: React.FC<UploadFormProps> = ({
                 onChange={(e) => setProvider(e.target.value)}
                 className="w-full rounded-xl bg-slate-950 border border-slate-800 px-3 py-2 text-xs font-medium text-slate-200 focus:border-cyan-500 focus:outline-none transition"
               >
-                <option value="mock">⚡ Insight Analysis Engine (Development / Local)</option>
+                <option value="mock">⚡ Nexiora Analysis Engine (Development / Local)</option>
                 <option value="gemini">✨ Google Gemini 1.5 Pro (Live API)</option>
                 <option value="openai">🤖 OpenAI GPT-4o (Live API)</option>
                 <option value="claude">🧠 Anthropic Claude 3.5 Sonnet (Live API)</option>
