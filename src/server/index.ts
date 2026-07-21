@@ -30,8 +30,8 @@ app.get("/api/health", (_req, res) => {
   });
 });
 
-// Serve Vite production build static assets if dist exists
-const clientDistPath = path.join(__dirname, "../../dist");
+// Serve Vite production build static assets from dist/
+const clientDistPath = path.join(__dirname, "..");
 app.use(express.static(clientDistPath));
 
 // SPA Fallback middleware compatible with Express 5
