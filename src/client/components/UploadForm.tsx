@@ -110,7 +110,7 @@ export const UploadForm: React.FC<UploadFormProps> = ({
           Client Conversation Intelligence
         </h1>
         <p className="mt-3 text-base text-slate-400 max-w-2xl mx-auto">
-          Upload or paste any client-coach health transcript (`.txt`, `.pdf`, `.docx`). InsightFlow AI extracts grounded metrics, evidence timeline pointers, risk flags, and actionable recommendations.
+          Upload or paste any client-coach health transcript (`.txt`, `.pdf`, `.docx`). Nexiora AI extracts grounded metrics, evidence timeline pointers, risk flags, and actionable recommendations.
         </p>
       </div>
 

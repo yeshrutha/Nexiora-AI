@@ -1,8 +1,8 @@
 import { SavedReportItem, AppSettings } from "../types/history.ts";
 import { AnalysisResponse } from "../types/insight.ts";
 
-const HISTORY_KEY = "insightflow_report_history_v1";
-const SETTINGS_KEY = "insightflow_app_settings_v1";
+const HISTORY_KEY = "nexiora_report_history_v1";
+const SETTINGS_KEY = "nexiora_app_settings_v1";
 
 export const DEFAULT_SETTINGS: AppSettings = {
   theme: "dark",

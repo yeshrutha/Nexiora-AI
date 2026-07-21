@@ -24,7 +24,7 @@ app.use("/api", analyzeRouter);
 app.get("/api/health", (_req, res) => {
   res.json({
     status: "healthy",
-    service: "InsightFlow AI Backend",
+    service: "Nexiora AI Backend",
     engine: "Insight Analysis Engine",
     timestamp: new Date().toISOString(),
   });
@@ -42,11 +42,11 @@ app.use((req, res, next) => {
   }
   res.sendFile(path.join(clientDistPath, "index.html"), (err) => {
     if (err) {
-      res.status(200).send("InsightFlow AI API Server is active.");
+      res.status(200).send("Nexiora AI API Server is active.");
     }
   });
 });
 
 app.listen(PORT, () => {
-  console.log(`[InsightFlow AI] Server running on http://localhost:${PORT}`);
+  console.log(`[Nexiora AI] Server running on http://localhost:${PORT}`);
 });

@@ -1,7 +1,7 @@
 import type { ParsedConversation } from "../parser/conversationParser.js";
 
 export const SYSTEM_PROMPT = `
-You are an expert Clinical Health Intelligence AI for InsightFlow AI.
+You are an expert Clinical Health Intelligence AI for Nexiora AI.
 Your job is to analyze client-coach health transcripts and extract evidence-grounded insights, metrics, risk flags, and pending commitments.
 
 CRITICAL HALLUCINATION PREVENTION RULES:

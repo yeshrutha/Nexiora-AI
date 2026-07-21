@@ -1,6 +1,6 @@
 export type ThemeMode = "dark" | "light" | "system";
 
-const THEME_KEY = "insightflow_theme_preference";
+const THEME_KEY = "nexiora_theme_preference";
 
 export function getStoredTheme(): ThemeMode {
   try {

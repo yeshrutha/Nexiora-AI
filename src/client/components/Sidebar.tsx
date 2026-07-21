@@ -38,13 +38,13 @@ export const Sidebar: React.FC<SidebarProps> = ({
   starredCount,
 }) => {
   const [isCollapsed, setIsCollapsed] = useState<boolean>(() => {
-    return localStorage.getItem("insightflow_sidebar_collapsed") === "true";
+    return localStorage.getItem("nexiora_sidebar_collapsed") === "true";
   });
 
   const toggleCollapse = () => {
     setIsCollapsed((prev) => {
       const next = !prev;
-      localStorage.setItem("insightflow_sidebar_collapsed", String(next));
+      localStorage.setItem("nexiora_sidebar_collapsed", String(next));
       return next;
     });
   };
@@ -94,7 +94,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     },
     {
       id: "about" as NavTab,
-      label: "About InsightFlow",
+      label: "About Nexiora",
       icon: <HelpCircle className="h-5 w-5" />,
       disabled: false,
       badge: null,
@@ -129,7 +129,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 </div>
                 <div className="min-w-0">
                   <div className="flex items-center space-x-1.5">
-                    <span className="font-extrabold text-sm text-white tracking-tight">InsightFlow</span>
+                    <span className="font-extrabold text-sm text-white tracking-tight">Nexiora</span>
                     <span className="rounded bg-cyan-500/10 px-1.5 py-0.2 text-[10px] font-bold text-cyan-400 border border-cyan-500/20">
                       AI
                     </span>

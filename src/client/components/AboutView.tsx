@@ -51,7 +51,7 @@ export const AboutView: React.FC = () => {
       <div className="text-center space-y-3">
         <div className="inline-flex items-center space-x-2 rounded-full bg-cyan-500/10 px-4 py-1.5 text-xs font-semibold text-cyan-400 border border-cyan-500/20 shadow-sm">
           <Activity className="h-4 w-4" />
-          <span>InsightFlow AI Platform</span>
+          <span>Nexiora AI Platform</span>
         </div>
         <h1 className="text-3xl font-extrabold text-white sm:text-4xl">
           Evidence-Grounded Client Intelligence Platform

@@ -103,7 +103,7 @@ export const App: React.FC = () => {
 
       setActiveTab("dashboard");
     } catch (err) {
-      console.error("[InsightFlow App] Analysis network error:", err);
+      console.error("[Nexiora App] Analysis network error:", err);
       setErrorPayload({
         error: "Analysis could not be completed.",
         reason: (err as Error).message || "A network error occurred while reaching the server.",
@@ -167,7 +167,7 @@ export const App: React.FC = () => {
         <header className="sticky top-0 z-20 border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-xl px-6 py-3 flex items-center justify-between">
           <div className="flex items-center space-x-2 text-xs font-semibold text-slate-400">
             <Activity className="h-4 w-4 text-cyan-400" />
-            <span className="text-white font-bold">InsightFlow AI</span>
+            <span className="text-white font-bold">Nexiora AI</span>
             <span>/</span>
             <span className="text-cyan-400 capitalize">{activeTab}</span>
           </div>
@@ -263,7 +263,7 @@ export const App: React.FC = () => {
         <footer className="border-t border-slate-900 bg-slate-950 py-4 text-center text-xs text-slate-500 mt-auto">
           <div className="mx-auto max-w-7xl px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
             <div className="flex items-center space-x-2">
-              <span className="font-bold text-slate-300">InsightFlow AI</span>
+              <span className="font-bold text-slate-300">Nexiora AI</span>
               <span>— Healthcare Client Intelligence Platform</span>
             </div>
             <div className="flex items-center space-x-3 text-[10px]">

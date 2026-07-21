@@ -31,7 +31,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
           <div>
             <div className="flex items-center space-x-2">
-              <span className="text-lg font-bold tracking-tight text-white font-sans">InsightFlow</span>
+              <span className="text-lg font-bold tracking-tight text-white font-sans">Nexiora</span>
               <span className="rounded-md bg-cyan-500/10 px-2 py-0.5 text-xs font-semibold text-cyan-400 border border-cyan-500/20">
                 AI
               </span>

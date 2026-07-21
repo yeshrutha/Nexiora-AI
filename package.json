@@ -1,7 +1,7 @@
 {
-  "name": "insightflow-ai",
+  "name": "nexiora-ai",
   "version": "1.0.0",
-  "description": "InsightFlow AI – AI Powered Client Intelligence Platform",
+  "description": "Nexiora AI – AI Powered Client Intelligence Platform",
   "main": "dist/server/index.js",
   "type": "module",
   "scripts": {
