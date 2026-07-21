@@ -53,18 +53,21 @@ export const App: React.FC = () => {
     try {
       let res: Response;
 
+      const apiBase = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/$/, "");
+      const apiUrl = `${apiBase}/api/analyze`;
+
       if (payload.file) {
         const formData = new FormData();
         formData.append("file", payload.file);
         formData.append("provider", selectedProvider);
         if (payload.sourceLabel) formData.append("sourceLabel", payload.sourceLabel);
 
-        res = await fetch("/api/analyze", {
+        res = await fetch(apiUrl, {
           method: "POST",
           body: formData,
         });
       } else {
-        res = await fetch("/api/analyze", {
+        res = await fetch(apiUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
