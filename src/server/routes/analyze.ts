@@ -56,7 +56,25 @@ analyzeRouter.post("/analyze", upload.single("file"), async (req, res) => {
     let rawText: string;
     let sourceLabel: string;
 
+    const INVALID_CODE_EXTENSIONS = new Set([
+      "py", "js", "ts", "jsx", "tsx", "cpp", "c", "h", "cs", "java", "sh", "bat", "ps1",
+      "html", "css", "json", "xml", "sql", "php", "rb", "go", "rs", "yaml", "yml"
+    ]);
+
     if (req.file) {
+      const ext = req.file.originalname.split(".").pop()?.toLowerCase() || "";
+      if (INVALID_CODE_EXTENSIONS.has(ext)) {
+        res.status(400).json({
+          error: "Invalid File Type Uploaded",
+          reason: `The uploaded file (.${ext}) is a code/script file rather than a healthcare consultation transcript document (.txt, .pdf, .docx).`,
+          suggestions: [
+            "Upload a valid .txt, .pdf, or .docx health check-in transcript.",
+            "Ensure the file contains a consultation between a client and a health coach, physician, or dietitian.",
+            "Try loading one of the pre-built sample health check-in transcripts.",
+          ],
+        });
+        return;
+      }
       rawText = await extractTextFromFile(req.file);
       sourceLabel = req.file.originalname;
     } else if (typeof req.body?.text === "string" && req.body.text.trim().length > 0) {

@@ -25,9 +25,9 @@ const CODE_KEYWORDS = new Set([
 ]);
 
 /**
- * Robust multi-format conversation & transcript parser with smart domain validation.
+ * Robust multi-format conversation & transcript parser with strict domain validation.
  * Validates whether the uploaded text is a genuine healthcare/lifestyle consultation.
- * Accepts all valid client check-ins (.txt, .pdf, .docx) while rejecting non-health code/chat files.
+ * Accepts all valid client check-ins (.txt, .pdf, .docx) while rejecting non-health files & code scripts.
  */
 export function parseConversation(rawText: string): ParsedConversation {
   const rawLines = rawText.split(/\r?\n/);
@@ -181,14 +181,14 @@ export function parseConversation(rawText: string): ParsedConversation {
   }
 
   // --- HEALTHCARE & CONSULTATION DOMAIN INSPECTOR ---
-  // 1. Explicit Non-Healthcare Indicators (e.g. Python code exceptions, ML training, college timetable chats)
-  const isExplicitNonHealth = /\b(?:python|pytorch|huggingface|zerodivisionerror|runtimeerror|baseexception|github|repo|salary|hiring|skill lab|clg|nala clg|bartini|ogthini|time table)\b/i.test(rawText);
+  // 1. Explicit Non-Healthcare / Non-Consultation / Code Script Indicators
+  const isExplicitNonHealth = /\b(?:python|pytorch|huggingface|zerodivisionerror|runtimeerror|baseexception|github|repo|salary|hiring|skill lab|clg|nala clg|bartini|ogthini|time table|console\.log|function|const|let|var|def|class|import|export|include|public class|int main|void|DOCTYPE|html|script|process\.env|npm run|git commit|bash|shell|curl|wget)\b/i.test(rawText);
 
   // 2. Broad Healthcare, Lifestyle, Wellness, and Consultation Indicators
-  const hasHealthOrConsultationTopic = /\b(?:sleep|slept|insomnia|bedtime|rest|tired|fatigue|exhausted|energy|mood|diet|diets|meal|meals|eating|food|foods|snack|breakfast|lunch|dinner|takeout|protein|salad|calories|water|hydration|liters|litres|liter|litre|glasses|workout|workouts|exercise|exercises|gym|cardio|running|yoga|swim|cycling|bike|lift|resistance|steps|walked|walking|pain|ache|aches|ached|aching|dizzy|nausea|headache|cramp|cramps|sore|symptom|symptoms|knee|back|neck|shoulder|tightness|stress|anxious|anxiety|overwhelm|pressure|burnout|wellness|health|recovery|check-?in|physician|dietitian|patient|client|coach|consultation|nutrition|lifestyle|habit|habits|routine|target|goals|progress|recommendation|feeling|feels)\b/i.test(rawText);
+  const hasHealthOrConsultationTopic = /\b(?:sleep|slept|insomnia|bedtime|rest|tired|fatigue|exhausted|energy|mood|diet|diets|meal|meals|eating|food|foods|snack|breakfast|lunch|dinner|takeout|protein|salad|calories|hydration|liters|litres|liter|litre|glasses|workout|workouts|exercise|exercises|gym|cardio|running|yoga|swim|cycling|bike|lift|resistance|steps|walked|walking|pain|ache|aches|ached|aching|dizzy|nausea|headache|cramp|cramps|sore|symptom|symptoms|knee|back|neck|shoulder|tightness|stress|anxious|anxiety|overwhelm|pressure|burnout|wellness|health|recovery|check-?in|physician|dietitian|patient|client|coach|consultation|nutrition|lifestyle|habit|habits|routine|target|goals|progress|recommendation|feeling|feels)\b/i.test(rawText);
 
-  // Mark as healthcare transcript if it has health/consultation topics OR has valid parsed dialogue lines without explicit code/timetable keywords
-  const isHealthcare = (hasHealthOrConsultationTopic || parsedLines.length >= 2) && !isExplicitNonHealth;
+  // STRICT DOMAIN RULE: Must contain genuine health/lifestyle/wellness consultation topics and MUST NOT be explicit code/timetable text
+  const isHealthcare = hasHealthOrConsultationTopic && !isExplicitNonHealth;
   let nonHealthcareReason: string | undefined;
 
   if (!isHealthcare) {

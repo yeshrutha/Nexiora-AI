@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   LayoutDashboard,
   UploadCloud,
@@ -109,34 +109,44 @@ export const Sidebar: React.FC<SidebarProps> = ({
     >
       {/* Brand Header */}
       <div>
-        <div className="flex items-center justify-between p-4 border-b border-slate-800/80 h-16">
-          <div
-            className="flex items-center space-x-3 cursor-pointer overflow-hidden"
-            onClick={() => setActiveTab("upload")}
-          >
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 shadow-md shadow-cyan-500/20 flex-shrink-0">
+        <div className="flex items-center justify-between px-3.5 py-4 border-b border-slate-800/80 h-16">
+          {isCollapsed ? (
+            <button
+              onClick={toggleCollapse}
+              className="mx-auto flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 text-white shadow-md shadow-cyan-500/20 hover:scale-105 transition"
+              title="Expand Sidebar"
+            >
               <Activity className="h-5 w-5 text-white" />
-            </div>
-            {!isCollapsed && (
-              <div className="min-w-0">
-                <div className="flex items-center space-x-1.5">
-                  <span className="font-extrabold text-sm text-white tracking-tight">InsightFlow</span>
-                  <span className="rounded bg-cyan-500/10 px-1.5 py-0.2 text-[10px] font-bold text-cyan-400 border border-cyan-500/20">
-                    AI
-                  </span>
+            </button>
+          ) : (
+            <>
+              <div
+                className="flex items-center space-x-3 cursor-pointer overflow-hidden"
+                onClick={() => setActiveTab("upload")}
+              >
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 shadow-md shadow-cyan-500/20 flex-shrink-0">
+                  <Activity className="h-5 w-5 text-white" />
                 </div>
-                <span className="text-[10px] text-slate-400 block truncate font-medium">Healthcare SaaS</span>
+                <div className="min-w-0">
+                  <div className="flex items-center space-x-1.5">
+                    <span className="font-extrabold text-sm text-white tracking-tight">InsightFlow</span>
+                    <span className="rounded bg-cyan-500/10 px-1.5 py-0.2 text-[10px] font-bold text-cyan-400 border border-cyan-500/20">
+                      AI
+                    </span>
+                  </div>
+                  <span className="text-[10px] text-slate-400 block truncate font-medium">Healthcare SaaS</span>
+                </div>
               </div>
-            )}
-          </div>
 
-          <button
-            onClick={toggleCollapse}
-            className="hidden sm:flex h-7 w-7 items-center justify-center rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800 transition"
-            title={isCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
-          >
-            {isCollapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
-          </button>
+              <button
+                onClick={toggleCollapse}
+                className="hidden sm:flex h-7 w-7 items-center justify-center rounded-lg bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800 transition flex-shrink-0"
+                title="Collapse Sidebar"
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </button>
+            </>
+          )}
         </div>
 
         {/* Navigation Items List */}
@@ -152,7 +162,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
                 }}
                 disabled={item.disabled}
                 title={isCollapsed ? item.label : undefined}
-                className={`w-full flex items-center justify-between rounded-xl px-3 py-2.5 text-xs font-semibold transition-all duration-200 group ${
+                className={`w-full flex items-center ${
+                  isCollapsed ? "justify-center px-0 py-2.5" : "justify-between px-3 py-2.5"
+                } rounded-xl text-xs font-semibold transition-all duration-200 group ${
                   isActive
                     ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/20"
                     : item.disabled
@@ -160,7 +172,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     : "text-slate-400 hover:text-slate-200 hover:bg-slate-900"
                 }`}
               >
-                <div className="flex items-center space-x-3 min-w-0">
+                <div className={`flex items-center ${isCollapsed ? "justify-center" : "space-x-3 min-w-0"}`}>
                   <span className="flex-shrink-0">{item.icon}</span>
                   {!isCollapsed && <span className="truncate">{item.label}</span>}
                 </div>
