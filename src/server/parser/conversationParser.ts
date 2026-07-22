@@ -181,8 +181,29 @@ export function parseConversation(rawText: string): ParsedConversation {
   }
 
   // --- HEALTHCARE & CONSULTATION DOMAIN INSPECTOR ---
-  // 1. Explicit Non-Healthcare / Non-Consultation / Code Script Indicators
-  const isExplicitNonHealth = /\b(?:python|pytorch|huggingface|zerodivisionerror|runtimeerror|baseexception|github|repo|salary|hiring|skill lab|clg|nala clg|bartini|ogthini|time table|console\.log|function|const|let|var|def|class|import|export|include|public class|int main|void|DOCTYPE|html|script|process\.env|npm run|git commit|bash|shell|curl|wget)\b/i.test(rawText);
+  // 1. Explicit Non-Healthcare / Non-Consultation / Code Script Indicators (using syntax-aware patterns)
+  const codeSyntaxPatterns = [
+    /console\.log\(/i,
+    /function\s+\w+\s*\(/i,
+    /(?:const|let|var)\s+\w+\s*=/i,
+    /def\s+\w+\s*\(.*\)\s*:/i,
+    /import\s+.*\s+from\s+['"]/i,
+    /#include\s+<\w+>/i,
+    /public\s+class\s+\w+/i,
+    /int\s+main\s*\(/i,
+    /<!DOCTYPE\s+html>/i,
+    /<html/i,
+    /<script/i,
+    /process\.env\./i,
+    /npm\s+run\s+\w+/i,
+    /git\s+commit\s+-m/i,
+    /ZeroDivisionError/i,
+    /RuntimeError/i,
+    /BaseException/i,
+    /\b(?:pytorch|huggingface|salary|hiring|skill lab|nala clg|bartini|ogthini|time table)\b/i
+  ];
+
+  const isExplicitNonHealth = codeSyntaxPatterns.some((pattern) => pattern.test(rawText));
 
   // 2. Broad Healthcare, Lifestyle, Wellness, and Consultation Indicators
   const hasHealthOrConsultationTopic = /\b(?:sleep|slept|insomnia|bedtime|rest|tired|fatigue|exhausted|energy|mood|diet|diets|meal|meals|eating|food|foods|snack|breakfast|lunch|dinner|takeout|protein|salad|calories|hydration|liters|litres|liter|litre|glasses|workout|workouts|exercise|exercises|gym|cardio|running|yoga|swim|cycling|bike|lift|resistance|steps|walked|walking|pain|ache|aches|ached|aching|dizzy|nausea|headache|cramp|cramps|sore|symptom|symptoms|knee|back|neck|shoulder|tightness|stress|anxious|anxiety|overwhelm|pressure|burnout|wellness|health|recovery|check-?in|physician|dietitian|patient|client|coach|consultation|nutrition|lifestyle|habit|habits|routine|target|goals|progress|recommendation|feeling|feels)\b/i.test(rawText);
